@@ -27,7 +27,7 @@ const mainMenuTemplate = [
     label: 'File',
     submenu: [
       {
-        label: 'Start new game'
+        label: 'Start new tracery'
       },
       {
         label: 'Quit',

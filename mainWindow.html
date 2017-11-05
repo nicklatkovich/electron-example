@@ -1,10 +1,32 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>PowerSupply</title>
+    <title>Electron Example</title>
 </head>
-<body>
-    <h1>Hi</h1>
-    <canvas width="512" height="256"></canvas>
+<body style="overflow: hidden">
+    <canvas id="canvas" style="margin: 0px"></canvas>
 </body>
+<script>
+var htmlCanvas = document.getElementById('canvas'),
+    context = htmlCanvas.getContext('2d'),
+    width, height
+window.addEventListener('resize', resizeCanvas, false)
+resizeCanvas( )
+setInterval(onRedraw, 18)
+
+function onRedraw( ) {
+    context.beginPath( )
+    context.lineWidth = '1'
+    context.strokeStyle = 'green'
+    context.moveTo(Math.random( ) * width, Math.random( ) * height)
+    context.lineTo(Math.random( ) * width, Math.random( ) * height)
+    context.stroke( )
+}
+
+function resizeCanvas( ) {
+    width = htmlCanvas.width = window.innerWidth
+    height = htmlCanvas.height = window.innerHeight
+}
+</script>
 </html>
