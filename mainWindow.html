@@ -5,28 +5,30 @@
     <title>Electron Example</title>
 </head>
 <body style="overflow: hidden">
-    <canvas id="canvas" style="margin: 0px"></canvas>
+    <canvas id="canvas" style="position: absolute; left: 0px; top: 0px"></canvas>
 </body>
-<script>
-var htmlCanvas = document.getElementById('canvas'),
-    context = htmlCanvas.getContext('2d'),
-    width, height
-window.addEventListener('resize', resizeCanvas, false)
-resizeCanvas( )
-setInterval(onRedraw, 18)
+<script src="js/main.js"></script>
+<script type="text/javascript">
+    console.log(1)
+    htmlCanvas = document.getElementById('canvas')
+    context = htmlCanvas.getContext('2d')
+    main = new Main(context)
+    window.addEventListener('resize', resizeCanvas, false)
+    resizeCanvas( )
+    prevTime = Date.now( )
+    // main.onStep(0.018)
+    setInterval(onStep, 17)
 
-function onRedraw( ) {
-    context.beginPath( )
-    context.lineWidth = '1'
-    context.strokeStyle = 'green'
-    context.moveTo(Math.random( ) * width, Math.random( ) * height)
-    context.lineTo(Math.random( ) * width, Math.random( ) * height)
-    context.stroke( )
-}
+    function onStep( ) {
+        let newTime = Date.now( )
+        main.onStep((prevTime - newTime) / 1000)
+        prevTime = newTime
+    }
 
-function resizeCanvas( ) {
-    width = htmlCanvas.width = window.innerWidth
-    height = htmlCanvas.height = window.innerHeight
-}
+    function resizeCanvas( ) {
+        width = htmlCanvas.width = window.innerWidth
+        height = htmlCanvas.height = window.innerHeight
+        main.onResize( )
+    }
 </script>
 </html>
